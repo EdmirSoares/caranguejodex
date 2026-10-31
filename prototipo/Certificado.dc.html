@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Certificado</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1E1E}a:hover{color:#000000}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #EFEFEF; font-family: Outfit, sans-serif; color: #1E1E1E; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 16px; overflow: hidden">
+  <a href="Perfil.dc.html" aria-label="Voltar à coleção" style="align-self: flex-start; width: 44px; height: 44px; box-sizing: border-box; border: 2px solid #1E1E1E; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+  </a>
+  <div style="display: flex; flex-direction: column; gap: 18px; padding: 22px; border: 2px solid #1E1E1E; border-radius: 32px; background: #FFFFFF; box-shadow: 0 6px 0 #1E1E1E">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span style="font-size: 40px; font-weight: 300; color: #4285F4; line-height: 1" aria-hidden="true">{</span>
+      <span style="font-size: 34px; font-weight: 800; letter-spacing: -0.02em; line-height: 1">DevFest</span>
+      <span style="font-size: 40px; font-weight: 300; color: #4285F4; line-height: 1" aria-hidden="true">}</span>
+    </div>
+    <div style="align-self: flex-start; padding: 6px 18px; border: 2px solid #1E1E1E; border-radius: 999px; font-size: 18px">Aracaju · [ANO]</div>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #555555">Certificado de conquistas</span>
+      <span style="font-size: 30px; font-weight: 800">Ana Souza</span>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <span style="flex: 1; display: flex; flex-direction: column; padding: 10px 12px; border: 2px solid #1E1E1E; border-radius: 18px; background: #FBBC04"><span style="font-size: 22px; font-weight: 800">3/6</span><span style="font-size: 12px">na Dex</span></span>
+      <span style="flex: 1; display: flex; flex-direction: column; padding: 10px 12px; border: 2px solid #1E1E1E; border-radius: 18px; background: #34A853"><span style="font-size: 22px; font-weight: 800">10</span><span style="font-size: 12px">conexões</span></span>
+      <span style="flex: 1; display: flex; flex-direction: column; padding: 10px 12px; border: 2px solid #1E1E1E; border-radius: 18px; background: #4285F4"><span style="font-size: 22px; font-weight: 800">Nv 4</span><span style="font-size: 12px">320 XP</span></span>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <sc-for list="{{earned}}" as="e" hint-placeholder-count="3">
+        <div style="width: 56px; height: 56px; box-sizing: border-box; border: 2px solid #1E1E1E; border-radius: 999px; padding: 3px; background: {{e.ring}}">
+          <img src="assets/crabuntu-medalhao.png" alt="{{e.alt}}" style="display: block; width: 100%; height: 100%; border-radius: 999px; object-fit: cover; filter: {{e.filter}}">
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1.5px solid #1E1E1E; font-size: 13px">
+      <span>Verificável em [app]/cert/7K2-QX9</span>
+      <span style="font-size: 13px; color: #555555">[logo GDG]</span>
+    </div>
+  </div>
+  <div style="flex-grow: 1"></div>
+  <button type="button" style="height: 58px; border: 2px solid #1E1E1E; border-radius: 18px; background: #4285F4; box-shadow: 0 5px 0 #1E1E1E; color: #1E1E1E; font-size: 17px; font-weight: 800; letter-spacing: 0.05em; font-family: Outfit, sans-serif">ADICIONAR AO LINKEDIN</button>
+  <button type="button" style="height: 54px; margin-top: 4px; border: 2px solid #1E1E1E; border-radius: 18px; background: #FFFFFF; box-shadow: 0 5px 0 #1E1E1E; color: #1E1E1E; font-size: 17px; font-weight: 800; letter-spacing: 0.05em; font-family: Outfit, sans-serif">COPIAR LINK PÚBLICO</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      earned: [
+        { ring: '#EA4335', filter: 'hue-rotate(0deg)', alt: 'Caranguejo da Organização' },
+        { ring: '#34A853', filter: 'hue-rotate(130deg)', alt: 'Caranguejo do Patrocinador B' },
+        { ring: '#4285F4', filter: 'hue-rotate(210deg)', alt: 'Caranguejo do Patrocinador A' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

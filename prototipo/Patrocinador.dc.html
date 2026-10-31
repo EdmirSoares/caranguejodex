@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Criar missão — patrocinador</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E1E1E}a:hover{color:#000000}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #EFEFEF; font-family: Outfit, sans-serif; color: #1E1E1E; padding: 48px 20px 24px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.02em">Nova missão</h1>
+    <span style="padding: 4px 12px; border: 2px solid #1E1E1E; border-radius: 999px; background: #FFFFFF; font-size: 13px; font-weight: 600">[Patrocinador B]</span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <div style="display: flex; justify-content: space-between; font-size: 14px"><span>Orçamento de pontos</span><span style="font-weight: 700">{{remainingLabel}}</span></div>
+    <div style="height: 10px; border: 1.5px solid #1E1E1E; border-radius: 999px; background: #FFFFFF; overflow: hidden"><div style="width: {{usedPct}}; height: 100%; background: {{barColor}}"></div></div>
+  </div>
+
+  <p style="margin: 0; font-size: 15px; font-weight: 700">1. Skin do seu caranguejo</p>
+  <div style="display: flex; gap: 14px; align-items: center; padding: 12px; border: 2px solid #1E1E1E; border-radius: 24px; background: #FFFFFF">
+    <div style="flex-shrink: 0; width: 96px; display: flex; flex-direction: column; align-items: center">
+      <img src="assets/crabuntu.png" alt="Prévia da skin escolhida" style="display: block; width: 92px; height: auto; filter: {{skinFilter}}">
+      <div style="width: 80px; height: 14px; margin-top: -4px; box-sizing: border-box; border: 2px solid #1E1E1E; border-radius: 50%; background: {{skinRing}}"></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; gap: 8px">
+        <sc-for list="{{skins}}" as="s" hint-placeholder-count="4">
+          <button type="button" onClick="{{s.pick}}" aria-label="{{s.label}}" style="width: 44px; height: 44px; border-radius: 999px; border: {{s.border}}; background: {{s.color}}"></button>
+        </sc-for>
+      </div>
+      <span style="font-size: 13px; color: #555555">[Acessório da marca] na versão final</span>
+    </div>
+  </div>
+
+  <p style="margin: 0; font-size: 15px; font-weight: 700">2. Modelo de missão</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px">
+    <sc-for list="{{templates}}" as="t" hint-placeholder-count="5">
+      <button type="button" onClick="{{t.pick}}" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid #1E1E1E; background: {{t.bg}}; color: {{t.fg}}; font-size: 15px; font-weight: 600; font-family: Outfit, sans-serif">{{t.name}}</button>
+    </sc-for>
+  </div>
+  <p style="margin: 0; font-size: 14px; color: #3A3A3A">{{tplDesc}}</p>
+
+  <p style="margin: 0; font-size: 15px; font-weight: 700">3. Nível de validação</p>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+    <sc-for list="{{levels}}" as="l" hint-placeholder-count="3">
+      <button type="button" onClick="{{l.pick}}" style="height: 48px; border-radius: 999px; border: {{l.border}}; background: {{l.bg}}; color: {{l.color}}; font-size: 15px; font-weight: 600; font-family: Outfit, sans-serif">{{l.label}}</button>
+    </sc-for>
+  </div>
+  <div style="flex-grow: 1"></div>
+  <button type="button" style="height: 58px; border: 2px solid #1E1E1E; border-radius: 18px; background: #34A853; box-shadow: 0 5px 0 #1E1E1E; color: #1E1E1E; font-size: 18px; font-weight: 800; letter-spacing: 0.06em; font-family: Outfit, sans-serif">PUBLICAR MISSÃO</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tpl: 'estande', lvl: 'ouro', skin: 'verde' };
+  }
+  renderVals() {
+    const { tpl, lvl, skin } = this.state;
+    const skinDefs = [
+      { id: 'azul', label: 'Skin azul', color: '#4285F4', hue: 210 },
+      { id: 'verde', label: 'Skin verde', color: '#34A853', hue: 130 },
+      { id: 'amarelo', label: 'Skin amarela', color: '#FBBC04', hue: 40 },
+      { id: 'vermelho', label: 'Skin vermelha', color: '#EA4335', hue: 0 }
+    ];
+    const curSkin = skinDefs.find((s) => s.id === skin);
+    const skins = skinDefs.map((s) => ({
+      ...s,
+      border: s.id === skin ? '4px solid #1E1E1E' : '2px solid #1E1E1E',
+      pick: () => this.setState({ skin: s.id })
+    }));
+    const defs = [
+      { id: 'conexao', name: 'Conexão', desc: 'Trocar QR com pessoas que têm uma tag.', allowed: ['prata'] },
+      { id: 'conhecimento', name: 'Conhecimento', desc: 'Codelab ou quiz sobre o seu produto.', allowed: ['ouro'] },
+      { id: 'presenca', name: 'Presença', desc: 'Pergunta numa palestra, validada pelo staff.', allowed: ['prata'] },
+      { id: 'estande', name: 'Estande', desc: 'Visita, conversa validada ou desafio ao vivo.', allowed: ['bronze', 'prata', 'ouro'] },
+      { id: 'encontro', name: 'Encontro', desc: 'Achar alguém com uma tag no seu estande.', allowed: ['prata'] }
+    ];
+    const pts = { bronze: 10, prata: 30, ouro: 50 };
+    const cur = defs.find((d) => d.id === tpl);
+    const level = cur.allowed.indexOf(lvl) >= 0 ? lvl : cur.allowed[cur.allowed.length - 1];
+    const used = 50 + pts[level];
+    const remaining = 150 - used;
+    const templates = defs.map((d) => ({
+      ...d,
+      bg: d.id === tpl ? '#1E1E1E' : '#FFFFFF',
+      fg: d.id === tpl ? '#FFFFFF' : '#1E1E1E',
+      pick: () => this.setState({ tpl: d.id })
+    }));
+    const lv = [
+      { id: 'bronze', label: 'Bronze 10', on: '#F4B183' },
+      { id: 'prata', label: 'Prata 30', on: '#DADADA' },
+      { id: 'ouro', label: 'Ouro 50', on: '#FBBC04' }
+    ];
+    const levels = lv.map((l) => {
+      const ok = cur.allowed.indexOf(l.id) >= 0;
+      const sel = l.id === level;
+      return {
+        label: l.label,
+        border: ok ? (sel ? '4px solid #1E1E1E' : '2px solid #1E1E1E') : '2px dashed #8A8A8A',
+        bg: ok ? (sel ? l.on : '#FFFFFF') : '#EFEFEF',
+        color: ok ? '#1E1E1E' : '#6B6B6B',
+        pick: () => { if (ok) this.setState({ lvl: l.id }); }
+      };
+    });
+    return {
+      skins,
+      skinRing: curSkin.color,
+      skinFilter: 'hue-rotate(' + curSkin.hue + 'deg)',
+      templates,
+      tplDesc: cur.desc,
+      levels,
+      remainingLabel: remaining + ' de 150 livres',
+      usedPct: Math.round((used / 150) * 100) + '%',
+      barColor: '#1E1E1E'
+    };
+  }
+}
+</script>
+</body>
+</html>
