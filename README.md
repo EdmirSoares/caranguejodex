@@ -30,7 +30,7 @@
 
 Em eventos de tecnologia, as pessoas querem conhecer gente e aprender, mas acabam presas no próprio grupo. As gamificações comuns viram coleta passiva de QR code de estande, com pouca conversa de verdade.
 
-Aqui o jogo só avança com **interação humana real**. O participante cumpre missões criadas pelos patrocinadores: trocar QR com quem tem uma tag em comum, fazer uma pergunta numa palestra, resolver um desafio ao vivo num estande. A cada conjunto de missões, ele captura uma **skin do Crabuntu**, o caranguejo mascote da comunidade. Cada patrocinador tem a sua.
+Aqui o jogo só avança com **interação humana real**. O participante cumpre missões criadas pelos patrocinadores: trocar QR com quem tem uma tag em comum, fazer uma pergunta numa palestra, resolver um desafio ao vivo num estande. A cada conjunto de missões, ele captura uma **skin do Crabuntu**, o caranguejo mascote da comunidade. Cada patrocinador tem a sua personalizada de acordo com a logo ou cores da marca.
 
 A experiência mistura padrões de dois jogos conhecidos, sem copiar marca nem personagem de nenhum deles:
 
